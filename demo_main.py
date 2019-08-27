@@ -18,6 +18,7 @@ from nnabla.ext_utils import get_extension_context  # GPU
 
 #   Image
 import cv2
+from PIL import ImageFont, ImageDraw, Image
 
 #   Originals
 from settings import settings
@@ -259,50 +260,97 @@ def demo(args):
     deviceID = 0
     cap = cv2.VideoCapture(deviceID)
 
+    #   Font
+    front_color = (0, 0, 0)
+    back_color  = (255, 255, 255)
+    position = (30, 50)  # テキスト表示位置
+    font = cv2.FONT_HERSHEY_SIMPLEX
+
     ##  ~~~~~~~~~~~~~~~~~~~
     ##   Real-time IQA
     ##  ~~~~~~~~~~~~~~~~~~~
     Ave_num = 10
     cnt = 0
     result = []
+    result_ave = 0
+    video_coding = 0
+    frame_rate = 25.0
+    fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v') # video file format (mp4)
+
+    #   Get video information
+    _, frame = cap.read()           # capture video at once
+    height = frame.shape[0]         # video size
+    width = frame.shape[1]          # video size
+    if height > width:
+        trim_height = round(abs(height - width) / 2)
+        trim_width = 0
+    else:
+        trim_height = 0
+        trim_width = round(abs(height - width) / 2)
+
     while (True):
 
         # Capture from Video device
         ret, frame = cap.read()
 
-        #   Display image
-        cv2.imshow('frame', frame)
-
         #   Waiting keyboad input
         key = cv2.waitKey(40) & 0xFF
 
+        #   Resizing Image
+        frame_trim = frame[trim_height:height-trim_height,trim_width:width-trim_width,:]   # Trimming so as to be square size
+        Img_resize = cv2.resize(frame_trim, (64, 64), interpolation = cv2.INTER_AREA).transpose(2, 0, 1)  # Resize (*,*,3) -> (3,64,64)
+
         #   Processing
-        Img_resize = cv2.resize(frame, (64, 64)).transpose(2, 0, 1)  # Resize (*,*,3) -> (3,64,64)
         Input.d = np.expand_dims(Img_resize, axis=0)  # Add axis to match input (3,64,64) -> (1,3,64,64)
         Output.forward()
-        score = np.max([min([Output.d[0][0] / 9 * 100, 120]), 0] )
+
+        #   Storing Score
+        score = np.max([min([Output.d[0][0] / 9 * 100, 100]), 0] )
         result.append(score)
+
+        #   Averaging Score
         if cnt > Ave_num:
 
             result_ave = (np.average(np.array(result)))
+            result_ave = np.max([np.min([1.2*result_ave, 100]), 0])  # fine tuning
 
-            result_ave = np.max([np.min([2*result_ave, 100]), 0])  # もーわからん...微調整
-
-            print('  IQA Value  :: {0:.1f}/{1}'.format(result_ave, 100))
+            #   Just for check
+            # print('  IQA Value  :: {0:.1f}/{1}'.format(result_ave, 100))
 
             cnt=0
-
             result = []
 
         cnt += 1
 
+        # v : Start to save video
+        if key == ord('v'):
+            writer = cv2.VideoWriter('result/video.mp4', fmt, frame_rate, (width, height))
+            video_coding = 1
+        # v : Stop to save video
+        if key == ord('t'):
+            video_coding = 0
+            try:
+                writer.release()
+            except:
+                pass
         # q : Exit
         if key == ord('q'):
+            try:
+                writer.release()
+            except:
+                pass
             break
-        # s : Save
-        if key == ord('s'):
-            path = "photo.jpg"
-            cv2.imwrite(path, frame)
+
+        #   Display image
+        txt_ = 'Score : {0:.0f}%'.format(result_ave)
+        cv2.putText(frame, txt_, position, font, 1.2, back_color, 5, cv2.LINE_AA)
+        cv2.putText(frame, txt_, position, font, 1.2, front_color, 1, cv2.LINE_AA)
+        Img_disp = cv2.resize(frame, (round(width * 1.5), round(height * 1.5)), interpolation=cv2.INTER_LINEAR)
+        cv2.imshow('frame', Img_disp)
+
+        #   Save Video
+        if video_coding:
+            writer.write(frame)
 
     #   Finish Capturing
     cap.release()
