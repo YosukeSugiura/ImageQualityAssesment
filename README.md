@@ -1,12 +1,34 @@
-# Image Quality Assesment
+# Image Quality Assesment Demo
 
 Implementation of Image Quality Assesment using DNN with No Reference.  
+You can do demo not only on your local PC but also on goole colaboratory.
 
 **Reference Paper**  
 not abailable
 
 
-# Requirements
+
+
+***
+
+# On Google Colaboratory
+
+You can demo on goole colaboratory.
+Google colab is very conbinient because we do not need to choose the execution environment. 
+You can open source code on google colab in two ways.  
+
+  - Access [IQA_demo.ipynb](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) 
+and push `Open In Colab` bottun.
+
+   - You can open iPython code directly from [this link](https://colab.research.google.com/github/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb). After log-in Google, code for demo would be opened automatically.
+
+# On local PC
+
+You can demo on your local environment. 
+But in this case you have to install some python pachages. 
+Please follow the below.
+
+## Requirements
 
 At the biggining, I reccomend you to upgrade pip in command prompt by
 ```
@@ -27,13 +49,33 @@ and then install the following packages.
    ```python
    pip install opencv-python
    ```
+## Training & Test
 
-# Network model
+The trained network is already prepared in params folder
 
-now not abailable
+Download all files and run `demo_main.py`.  
+Please change source code according to your purpose.  
 
-# Run
+### Training
 
-Download all files and run `cnn.py`.
+If you want to execute training, please set  
+```@python
+ Demo = False         
+ Test = False         
+```
 
-   
+### Test
+
+If you want to execute test, please set  
+```@python
+ Demo = False         
+ Test = True         
+```
+
+## Demo
+
+If you want to execute test, please set  
+```@python
+ Demo = False         
+ Test = True         
+```
