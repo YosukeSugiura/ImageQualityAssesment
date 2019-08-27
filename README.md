@@ -60,9 +60,11 @@ I show the procedure to execute.
 
  1.  Access [IQA_demo.ipynb](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) and push `Open In Colab` bottun. Or access [this link](https://colab.research.google.com/github/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) directly.  After log-in Google, you can automatically open source code for demo.
  
- 2. Run all cells. Captured video is displayed.
+ 2. Before Running, connect web camera to your device.
  
- 3. Push 'Capture' bottun on the output console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
+ 3. Run all cells. Captured video is displayed.
+ 
+ 4. Push 'Capture' bottun on the output console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
 ![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo1.png)
 
 # 2. On local PC
