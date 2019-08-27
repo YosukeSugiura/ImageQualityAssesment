@@ -44,11 +44,15 @@ You can change those parameters from `settings.py`.
    
 # How to Execute
 
-You can choose two ways to execute DNN-based IQA, on **Google Colaboratory** or **your Local PC**.   
+You can choose two ways to execute DNN-based IQA, on Google Colaboratory or your Local PC.   
+
+ >  **Google Colaboratory**  :  for Demo only.  
+ > 
+ >  **Local PC**  :  for Training / Test / Demo.  
 
 If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 
-# On Google Colaboratory
+# 1. On Google Colaboratory
 
 You can demo on goole colaboratory.
 Google colab is very conbinient because all the processes are done on the cloud server. 
@@ -58,10 +62,10 @@ I show the procedure to execute.
  
  2. Run all cells. Captured video is displayed.
  
- 3. Push 'Capture' bottun on the output console. Then, the IQA result is displayed with the captured picture.  
+ 3. Push 'Capture' bottun on the output console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
 ![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo1.png)
 
-# On local PC
+# 2. On local PC
 
 You can also demo on your local environment. 
 But in this case you have to install some python pachages. 
@@ -106,7 +110,7 @@ For example, If you want to execute training, please set
 
 ### Notice
 
-**The trained network is already stored in params folder.** ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params) . )  
+The trained network is already stored in params folder. ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params) . )  
 By default, you do not need to execute training.
 
 If you want to use the trained network, check `settings.py` and please set
@@ -116,8 +120,8 @@ self.epoch      = 5000
 
 ### Demo
  
-When you run demo, the window for the captured image is opened.  
-As seen in the figure, you can find IQA score at upper left of the window.
+When you start demo, the system executes continuous evaluation.
+You can find real-time IQA score at upper left of the window.
 
 ![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo2.png)
 
