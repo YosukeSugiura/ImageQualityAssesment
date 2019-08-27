@@ -112,16 +112,6 @@ For example, If you want to execute training, please set
  Test = False         
 ```
 
-### Notice
-
-The trained network is already stored in params folder. ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params) . )  
-By default, you do not need to execute training.
-
-If you want to use the trained network, check `settings.py` and please set
-```@python
-self.epoch      = 5000   
-```
-
 ### Demo
  
 When you start demo, the system executes continuous evaluation.
@@ -130,3 +120,22 @@ You can find real-time IQA score at upper left of the window.
 ![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo2.png)
 
 You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
+
+
+# Notice
+
+### Training Network Model
+The trained network is already stored in params folder. ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params). )
+By default, you do not need to execute training.
+
+If you want to use the trained network, check `settings.py` and please set
+```@python
+self.epoch      = 5000   
+```
+
+### Fine Tuning 
+
+In demo, IQA value is very sensitive to the out of focus. 
+If you want to gain the score in demo, adjust camera focus or change the distance of the object. 
+
+Inversely, when you add a blur, the IQA socre is obviously degradaded.
