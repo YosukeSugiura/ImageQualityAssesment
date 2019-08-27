@@ -8,14 +8,14 @@ You can try it on local PC as well as goole colaboratory.
 But **trainng is possible only on your PC**.   
 (Training on google colab is in the future.)
 
-**Reference Paper**  
+**[Reference Paper]**  
 will appear soon
 
-# Method
+# Overview
 
 ## Network Model
 
-This method is based on Convolutional Neural Network (CNN). The structure is shown in the following figure.  
+This method is based on Convolutional Neural Network (CNN). The structure is shown in the following figure. In this system, the output value takes continuous values. Several convolutional layers have a role in extracting the underlying image features.
 ![Structure](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/structure.png)
 - Activation Function :   Parametric ReLU (Output :  Linear) 
 
@@ -46,9 +46,9 @@ You can change those parameters from `settings.py`.
 
 You can choose two ways to execute DNN-based IQA, on Google Colaboratory or your Local PC.   
 
- >  **Google Colaboratory**  :  for Demo only.  
+ >  **Google Colaboratory**  :  for only Demo (one-shot).  
  > 
- >  **Local PC**  :  for Training / Test / Demo.  
+ >  **Local PC**  :  for Training / Test / Demo (continuous).  
 
 If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 
@@ -57,6 +57,8 @@ If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 You can demo on goole colaboratory.
 Google colab is very conbinient because all the processes are done on the cloud server. 
 I show the procedure to execute.
+
+### Demo
 
  1.  Access [IQA_demo.ipynb](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) and push `Open In Colab` bottun. Or access [this link](https://colab.research.google.com/github/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) directly.  After log-in Google, you can automatically open source code for demo.
  
