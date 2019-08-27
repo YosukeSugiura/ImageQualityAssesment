@@ -1,6 +1,9 @@
-# Image Quality Assesment Demo
+# Image Quality Assesment ( with Demo )
 
-Implementation of Image Quality Assesment using DNN with No Reference.  
+**Implementation of Image Quality Assesment using DNN with No Reference.**
+
+In demo, this system captures image by web camera and outputs IQA score in real-time.
+
 You can try it on local PC as well as goole colaboratory.
 But **trainng is possible only on your PC**.   
 (Training on google colab is in the future.)
@@ -22,6 +25,7 @@ This method is based on Convolutional Neural Network (CNN). The structure is sho
 
 The parameters for training are the followings.
 
+-  Training Dataset : TID2013 color images
 -  Loss Function : Mean Squared Error
 -  Updating Algorithm :  AMSBound  
 -  Learning Rate :  0.00005
@@ -31,6 +35,13 @@ The parameters for training are the followings.
 You can change those parameters from `settings.py`.
 
 ***
+# Demo
+***
+# Equipment
+
+- **Web Camera**  
+   You need web camera to capture photo or video as the input.
+   
 # How to Execute
 
 You can choose two ways to execute DNN-based IQA, on **Google Colaboratory** or **your Local PC**.   
@@ -41,19 +52,18 @@ If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 
 You can demo on goole colaboratory.
 Google colab is very conbinient because all the processes are done on the cloud server. 
-You can open source code on google colab in two ways.  
+I show the procedure to execute.
 
-  - Access [IQA_demo.ipynb](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) 
-and push `Open In Colab` bottun.
-
-   - Access [this link](https://colab.research.google.com/github/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) directly. 
-   
-After log-in Google, you can open source code for demo automatically.
-
+ 1.  Access [IQA_demo.ipynb](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) and push `Open In Colab` bottun. Or access [this link](https://colab.research.google.com/github/YosukeSugiura/ImageQualityAssesment/blob/master/IQA_demo.ipynb) directly.  After log-in Google, you can automatically open source code for demo.
+ 
+ 2. Run all cells. Captured video is displayed.
+ 
+ 3. Push 'Capture' bottun on the output console. Then, the IQA result is displayed with the captured picture.  
+![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo1.png)
 
 # On local PC
 
-You can demo on your local environment. 
+You can also demo on your local environment. 
 But in this case you have to install some python pachages. 
 Please follow the below.
 
@@ -78,41 +88,37 @@ and then install the following packages.
    ```
    $ pip install opencv-python
    ```
-## Training & Test & Demo
-
-**The trained network is already stored in params folder.**  
-( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params) . )
-
-If you want to use it, check `settings.py` and please set
-```@python
-self.epoch      = 5000   
-```
-
+## Run ( Training / Test / Demo )
 
 Download all files and run `demo_main.py`.  
 Please change the following variables in `demo_main.py` appropriately according to your purpose.  
 
-### Training
+| Parameters | for Training |for Test|for Demo|
+----|----|----|---- 
+| **Demo** | False | False | True |
+| **Test** | False | True | True/False |
 
-If you want to execute training, please set  
+For example, If you want to execute training, please set  
 ```@python
  Demo = False         
  Test = False         
 ```
-You can change the training parameters from `settings.py`.
 
-### Test
+### Notice
 
-If you want to execute test, please set  
+**The trained network is already stored in params folder.** ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params) . )  
+By default, you do not need to execute training.
+
+If you want to use the trained network, check `settings.py` and please set
 ```@python
- Demo = False         
- Test = True         
+self.epoch      = 5000   
 ```
 
 ### Demo
+ 
+When you run demo, the window for the captured image is opened.  
+As seen in the figure, you can find IQA score at upper left of the window.
 
-If you want to execute test, please set  
-```@python
- Demo = True         
- Test = False
-```
+![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo2.png)
+
+You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
