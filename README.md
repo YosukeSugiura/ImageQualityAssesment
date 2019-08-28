@@ -116,13 +116,25 @@ For example, If you want to execute training, please set
 
 ### Demo
  
-When you start demo, the system executes continuous evaluation and 
-displays result on the image window.
-You can find IQA score in real-time at upper left of the window.
+1. Run `demo_main.py` with demo mode (see above).
+
+2. You can find the continuous IQA score (0% - 100%) in real-time on the display window.
+
+3. If you need, use the following commmands during running:
+
+   - **`v`: Start Video Recording**   
+      If you press `v` key, you can start to record the display window as "mp4" video.  
+      
+   - **`t`: Stop Video Recording**   
+      If you press `t` key, you can stop to record the display window as "mp4" video.  
+      You can find the saved `video.mp4` file in `result` folder after stop.  
+      
+   - **`q`: Exit**   
+      If you press `q` key, you can exit.
 
 ![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/demo2.png)
 
-You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
+> Notice : You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
 
 
 # Notice
