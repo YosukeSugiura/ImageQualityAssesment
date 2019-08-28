@@ -67,7 +67,7 @@ I show the procedure to execute.
  3. Run all cells. Captured video is displayed.
  
  4. Push 'Capture' bottun on the output console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
-![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo1.png)
+![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/demo1.png)
 
 # 2. On local PC
 
@@ -117,7 +117,7 @@ For example, If you want to execute training, please set
 When you start demo, the system executes continuous evaluation.
 You can find real-time IQA score at upper left of the window.
 
-![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/demo2.png)
+![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/demo2.png)
 
 You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
 
