@@ -114,8 +114,9 @@ For example, If you want to execute training, please set
 
 ### Demo
  
-When you start demo, the system executes continuous evaluation.
-You can find real-time IQA score at upper left of the window.
+When you start demo, the system executes continuous evaluation and 
+displays result on the image window.
+You can find IQA score in real-time at upper left of the window.
 
 ![demo2](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/demo2.png)
 
