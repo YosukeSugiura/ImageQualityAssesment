@@ -13,12 +13,10 @@ import nnabla as nn
 import nnabla.functions as F
 import nnabla.parametric_functions as PF
 import nnabla.solvers as S
-import nnabla.initializer as I
 from nnabla.ext_utils import get_extension_context  # GPU
 
 #   Image
 import cv2
-from PIL import ImageFont, ImageDraw, Image
 
 #   Originals
 from settings import settings
