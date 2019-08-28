@@ -240,6 +240,24 @@ def demo(args):
     """
 
     ##  ~~~~~~~~~~~~~~~~~~~
+    ##   Arbitrary Parameters
+    ##  ~~~~~~~~~~~~~~~~~~~
+    #   Evaluation Settings
+    Frame_per_calc  = 10                        #   No. of Frames per Calculation Cycle
+    magnification   = 1.2                       #   Fine tuning for score value
+
+    #   Video Settings
+    frame_rate = 25.0                           #   Frame per Second
+    fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')  #     Video file format (mp4)
+
+    #   Display Settings
+    font_type   = cv2.FONT_HERSHEY_SIMPLEX      #   Font Type : Hershey fonts
+    front_color = (0, 0, 0)                     #   Font Color : front
+    back_color  = (255, 255, 255)               #   Font Color : background
+    position    = (30, 50)                      #   Context Position
+
+
+    ##  ~~~~~~~~~~~~~~~~~~~
     ##   Initial settings
     ##  ~~~~~~~~~~~~~~~~~~~
 
@@ -260,33 +278,25 @@ def demo(args):
     deviceID = 0
     cap = cv2.VideoCapture(deviceID)
 
-    #   Font
-    front_color = (0, 0, 0)
-    back_color  = (255, 255, 255)
-    position = (30, 50)  # テキスト表示位置
-    font = cv2.FONT_HERSHEY_SIMPLEX
-
     ##  ~~~~~~~~~~~~~~~~~~~
     ##   Real-time IQA
     ##  ~~~~~~~~~~~~~~~~~~~
-    Ave_num = 10
-    cnt = 0
-    result = []
-    result_ave = 0
-    video_coding = 0
-    frame_rate = 25.0
-    fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v') # video file format (mp4)
-
     #   Get video information
-    _, frame = cap.read()           # capture video at once
-    height = frame.shape[0]         # video size
-    width = frame.shape[1]          # video size
+    _, frame = cap.read()           #   Capture video at once
+    height = frame.shape[0]         #   Video size : height
+    width = frame.shape[1]          #   Video size : width
     if height > width:
         trim_height = round(abs(height - width) / 2)
         trim_width = 0
     else:
         trim_height = 0
         trim_width = round(abs(height - width) / 2)
+
+    #   Temporary Parameters for calculation
+    cnt         = 0
+    result      = []
+    result_ave  = 0
+    video_coding = 0
 
     while (True):
 
@@ -298,10 +308,10 @@ def demo(args):
 
         #   Resizing Image
         frame_trim = frame[trim_height:height-trim_height,trim_width:width-trim_width,:]   # Trimming so as to be square size
-        Img_resize = cv2.resize(frame_trim, (64, 64), interpolation = cv2.INTER_AREA).transpose(2, 0, 1)  # Resize (*,*,3) -> (3,64,64)
+        frame_resize = cv2.resize(frame_trim, (64, 64), interpolation = cv2.INTER_AREA).transpose(2, 0, 1)  # Resize (*,*,3) -> (3,64,64)
 
         #   Processing
-        Input.d = np.expand_dims(Img_resize, axis=0)  # Add axis to match input (3,64,64) -> (1,3,64,64)
+        Input.d = np.expand_dims(frame_resize, axis=0)  # Add axis to match input (3,64,64) -> (1,3,64,64)
         Output.forward()
 
         #   Storing Score
@@ -309,15 +319,17 @@ def demo(args):
         result.append(score)
 
         #   Averaging Score
-        if cnt > Ave_num:
+        if cnt > Frame_per_calc:
 
+            #   Average Storing Score
             result_ave = (np.average(np.array(result)))
-            result_ave = np.max([np.min([1.2*result_ave, 100]), 0])  # fine tuning
+            result_ave = np.max([np.min([magnification * result_ave, 100]), 0])  # fine tuning
 
             #   Just for check
             # print('  IQA Value  :: {0:.1f}/{1}'.format(result_ave, 100))
 
-            cnt=0
+            # Initialization
+            cnt = 0
             result = []
 
         cnt += 1
@@ -326,13 +338,15 @@ def demo(args):
         if key == ord('v'):
             writer = cv2.VideoWriter('result/video.mp4', fmt, frame_rate, (width, height))
             video_coding = 1
-        # v : Stop to save video
+
+        # t : Stop to save video
         if key == ord('t'):
             video_coding = 0
             try:
                 writer.release()
             except:
                 pass
+
         # q : Exit
         if key == ord('q'):
             try:
@@ -343,8 +357,8 @@ def demo(args):
 
         #   Display image
         txt_ = 'Score : {0:.0f}%'.format(result_ave)
-        cv2.putText(frame, txt_, position, font, 1.2, back_color, 5, cv2.LINE_AA)
-        cv2.putText(frame, txt_, position, font, 1.2, front_color, 1, cv2.LINE_AA)
+        cv2.putText(frame, txt_, position, font_type, 1.2, back_color, 5, cv2.LINE_AA)
+        cv2.putText(frame, txt_, position, font_type, 1.2, front_color, 1, cv2.LINE_AA)
         Img_disp = cv2.resize(frame, (round(width * 1.5), round(height * 1.5)), interpolation=cv2.INTER_LINEAR)
         cv2.imshow('frame', Img_disp)
 
