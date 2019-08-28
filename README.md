@@ -1,11 +1,11 @@
 # Image Quality Assesment ( with Demo )
 
-**Implementation of Image Quality Assesment using DNN with No Reference.**
+This shows the implementation of Image Quality Assesment using DNN with No Reference.
 
-In demo, this system captures image by web camera and outputs IQA score in real-time.
+I prepared training/test/demo system for IQA. In demo, this system captures image by web camera and outputs IQA score in real-time.
 
-You can try it on local PC as well as goole colaboratory.
-But **trainng is possible only on your PC**.   
+You can try it on your local PC as well as goole colaboratory.
+But **Trainng is possible only on your PC**.   
 (Training on google colab is in the future.)
 
 **[Reference Paper]**  
