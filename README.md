@@ -54,8 +54,8 @@ If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 
 # 1. On Google Colaboratory
 
-You can demo on goole colaboratory.
-Google colab is very conbinient because all the processes are done on the cloud server. 
+You can try demo on goole colaboratory.
+Google colab is a very conbenient platform because all the processes are done on the cloud server. 
 I show the procedure to execute.
 
 ### Demo
