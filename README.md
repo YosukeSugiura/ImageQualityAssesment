@@ -19,7 +19,7 @@ This method is based on Convolutional Neural Network (CNN). The structure is sho
 ![Structure](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/structure.png)
 - Activation Function :   Parametric ReLU (Output :  Linear) 
 
-> Actually, my network model described in `demo_main.py` is a little different with the abobe one for more improvement.
+> Notice : Actually, my network model described in `demo_main.py` is a little different with the abobe one for more improvement.
 
 ## Training
 
@@ -44,11 +44,11 @@ You can change those parameters from `settings.py`.
    
 # How to Execute
 
-You can choose two ways to execute DNN-based IQA, on Google Colaboratory or your Local PC.   
+You can choose from two ways to execute DNN-based IQA, on Google Colaboratory or your Local PC.   
 
- >  **Google Colaboratory**  :  for only Demo (one-shot).  
+ >  **1.  Google Colaboratory**  :  for only Demo (one-shot).  
  > 
- >  **Local PC**  :  for Training / Test / Demo (continuous).  
+ >  **2.  Local PC**  :  for Training / Test / Demo (continuous).  
 
 If you want to run **Only Demo**, I recommend you to use Google Colaboratory.
 
@@ -66,8 +66,10 @@ I show the procedure to execute.
  
  3. Run all cells. Captured video is displayed.
  
- 4. Push 'Capture' bottun on the output console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
+ 4. Push 'Capture' bottun on the console. The system executes one-shot evaluation and then displays the IQA result on the console with the captured picture.  
 ![demo1](https://github.com/YosukeSugiura/ImageQualityAssesment/blob/master/demo1.png)
+
+> Notice : If not working, you may have to allow the permission of your browser to access the web camera.
 
 # 2. On local PC
 
@@ -125,13 +127,13 @@ You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQua
 
 # Notice
 
-### Training Network Model
-The trained network is already stored in params folder. ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params). )
-By default, you do not need to execute training.
+### Trained Network Model
+The trained network is already stored in params folder ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params). )
+By default, you do not need to execute training. 
 
-If you want to use the trained network, check `settings.py` and please set
+If you want to use the trained network, open `settings.py` and please set
 ```@python
-self.epoch      = 5000   
+self.epoch = 5000   
 ```
 
 ### Fine Tuning 
