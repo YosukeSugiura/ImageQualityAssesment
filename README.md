@@ -101,12 +101,12 @@ and then install the following packages.
 ## Run ( Training / Test / Demo )
 
 Download all files and run `demo_main.py`.  
-Please change the following variables in `demo_main.py` appropriately according to your purpose.  
+According to your purpose, change the following two variables in `demo_main.py` appropriately.  
 
 | Parameters | for Training |for Test|for Demo|
 ----|----|----|---- 
-| **Demo** | False | False | True |
-| **Test** | False | True | True/False |
+| `Demo` | False | False | True |
+| `Test` | False | True | True/False |
 
 For example, If you want to execute training, please set  
 ```@python
@@ -140,7 +140,7 @@ For example, If you want to execute training, please set
 # Notice
 
 ### Trained Network Model
-The trained network is already stored in params folder ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params). )
+The trained network is already stored in params folder ( You can see from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/params). ).
 By default, you do not need to execute training. 
 
 If you want to use the trained network, open `settings.py` and please set
@@ -150,7 +150,7 @@ self.epoch = 5000
 
 ### Fine Tuning 
 
-In demo, IQA value is very sensitive to the out of focus. 
-If you want to gain the score in demo, adjust camera focus or change the distance of the object. 
+1. In demo, IQA value is very sensitive to the out of focus.  
+  If you want to gain the score in demo, adjust camera focus or change the distance between the camera and the object. 
 
-Inversely, when you add a blur, the IQA socre is obviously degradaded.
+2. Inversely, when you add a blur, the IQA socre is obviously degradaded.
