@@ -79,6 +79,13 @@ Please follow the below.
 
 ## Requirements
 
+### Python & CUDA
+
+- Python 3.6
+- CUDA 10.1 (Refer to [Official Installation Guide](https://developer.nvidia.com/cuda-downloads))
+- cuDNN 7.6
+
+### Python Package
 At the biggining, I reccomend you to upgrade pip in command prompt by
 ```
 $ pip install --upgrade pip
