@@ -147,19 +147,21 @@ For example, If you want to execute training, please set
 
 1. Make folders `data/image_train/` and `data/image_test/` in the same directory with source codes.
 
-1. Download TID2013 dataset from site([Direct link](http://www.ponomarenko.info/tid2013/tid2013.rar)).   
+2. Download TID2013 dataset from site([Direct link](http://www.ponomarenko.info/tid2013/tid2013.rar)).   
    TAMPERE IMAGE DATABASE 2013 TID2013, version 1.0  
    http://www.ponomarenko.info/tid2013.htm
    
-2. Unzip `tid2013.tar`.
+3. Unzip `tid2013.tar`.
 
-4. Choose somes image files from `tid2013/distorted_images/` as train data and move them to `data/image_train/`.
+4. Resize all images to 64 x 64.
 
-5. Copy `mos.txt` in `tid2013/` and paste to `data/image_train/`, and Remove some values which is not corresponding to the selected train data.
+5. Choose somes image files from `tid2013/distorted_images/` as train data and move them to `data/image_train/`.
 
-6. Do 4. and 5. again for test data.
+6. Copy `mos.txt` in `tid2013/` and paste to `data/image_train/`, and Remove some values which is not corresponding to the selected train data.
 
-7. Run demo_main.py with Train mode.
+7. Do 4. and 5. again for test data.
+
+8. Run demo_main.py with Train mode.
 
 # Notice
 
