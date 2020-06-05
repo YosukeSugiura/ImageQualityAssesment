@@ -159,7 +159,7 @@ For example, If you want to execute training, please set
 
 6. Copy `mos.txt` in `tid2013/` and paste to `data/image_train/`, and Remove some values which is not corresponding to the selected train data.
 
-7. Do 4. and 5. again for test data.
+7. Do 5. and 6. again for test data.
 
 8. Run demo_main.py with Train mode.
 
