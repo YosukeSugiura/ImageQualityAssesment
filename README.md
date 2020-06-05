@@ -21,7 +21,7 @@ This method is based on Convolutional Neural Network (CNN). The structure is sho
 
 > Notice : Actually, my network model described in `demo_main.py` is a little different with the abobe one for more improvement.
 
-## Training
+## Training Parameters
 
 The parameters for training are the followings.
 
@@ -143,6 +143,23 @@ For example, If you want to execute training, please set
 
 > Notice : You can see the demo video from [here](https://github.com/YosukeSugiura/ImageQualityAssesment/tree/master/result).
 
+### Before Training
+
+1. Make folders `data/image_train/` and `data/image_test/` in the same directory with source codes.
+
+1. Download TID2013 dataset from site([Direct link](http://www.ponomarenko.info/tid2013/tid2013.rar)).   
+   TAMPERE IMAGE DATABASE 2013 TID2013, version 1.0  
+   http://www.ponomarenko.info/tid2013.htm
+   
+2. Unzip `tid2013.tar`.
+
+4. Choose somes image files from `tid2013/distorted_images/` as train data and move them to `data/image_train/`.
+
+5. Copy `mos.txt` in `tid2013/` and paste to `data/image_train/`, and Remove some values which is not corresponding to the selected train data.
+
+6. Do 4. and 5. again for test data.
+
+7. Run demo_main.py with Train mode.
 
 # Notice
 
