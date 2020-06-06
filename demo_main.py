@@ -173,7 +173,7 @@ def train(args):
 
         ## Progress
         # Get result for Display
-        Input.d, Trues.d = batches_test.next(j)
+        Input.d, Trues.d = batches_test.next(i%batches_test.iter)
         Loss_test.forward(clear_no_need_grad=True)
 
         # Display text
