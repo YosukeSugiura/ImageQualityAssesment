@@ -225,7 +225,7 @@ def test(args):
         result.append(Loss_test.d)
 
     result_ave = np.average(np.array(result))
-    disp(args.epoch, batches.iter-1, result_ave)
+    disp(args.epoch, batches.iter, result_ave)
 
 
 
