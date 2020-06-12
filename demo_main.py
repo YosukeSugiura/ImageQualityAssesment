@@ -211,22 +211,26 @@ def test(args):
     with nn.parameter_scope(Name):
         nn.load_parameters(os.path.join(args.model_save_path, "network_param_{:04}.h5".format(args.epoch)))
 
-    # Training Data Setting
+    #   Training Data Setting
     image_data, mos_data = dt.data_loader(test=True)
     batches = dt.create_batch(image_data, mos_data, 1)
     del image_data, mos_data
-
-    disp = display(args.epoch, batches.iter)
-
+    
+    #   Test
     result = []
+    start_time = time.time()
     for j in range(batches.iter):
         Input.d, Trues.d = batches.next(j)
         Loss_test.forward(clear_no_need_grad=True)
         result.append(Loss_test.d)
+    stop_time = time.time()
 
     result_ave = np.average(np.array(result))
-    disp(args.epoch, batches.iter, result_ave)
-
+    print('  ---------------------------------------------------')
+    print('  [ Load model trained at Epoch  # {0} ]'.format(args.epoch))
+    print('    +  Averaged Loss           = {:.4f}'.format(result_ave))
+    print('    +  Time per 1 image        = {:.4f} [s]'.format( (stop_time-start_time) / (batches.iter))
+    print('  ---------------------------------------------------')
 
 
 # -------------------------------------------
