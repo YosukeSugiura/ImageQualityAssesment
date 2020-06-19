@@ -13,9 +13,9 @@ class settings:
         self.size               = (64,64)           # Input Size (64 by 64)
 
         #   Training
-        self.batch_size = 100                        # Batch size
-        self.epoch      = 5000                      # Epoch
-        self.learning_rate = 0.00005                  # Learning Rate
+        self.batch_size = 100                       # Batch size
+        self.epoch      = 2000                      # Epoch
+        self.learning_rate = 0.000001                # Learning Rate
 
         # Retrain
         self.retrain    = 0
