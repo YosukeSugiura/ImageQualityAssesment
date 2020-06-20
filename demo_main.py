@@ -30,7 +30,7 @@ import data as dt
 def network(input, scope="", test=False):
     """
     Define Convolutional DNN
-       input:   input image ( size must be 64 by 64 )
+       input:   input image ( size must be 64 by 64 ) = 3 x 64 x 64 Tensor
        test:    test or not
     """
 
@@ -51,24 +51,27 @@ def network(input, scope="", test=False):
 
     with nn.parameter_scope(scope):
 
-        # Convolution : 3,64,64 -> 32,64,64 -> 32,32,32
+        # Convolution : 3,64,64 -> 64,64,64 -> 64,32,32
         c1 = convblock(input, 64, name='cnv1')
         c1 = F.max_pooling(c1, (2,2), (2,2))
 
-        # Convolution : 32,32,32 -> 32,32,32 -> 32,16,16
+        # Convolution : 64,32,32 -> 32,32,32 -> 32,16,16
         c2 = convblock(c1, 32, name='cnv2')
         c2 = F.max_pooling(c2, (2,2), (2,2))
 
-        # Convolution : 32,16,16 -> 64,16,16 -> 64,8,8
+        # Convolution : 32,16,16 -> 16,16,16 -> 16,8,8
         c3 = convblock(c2, 16, f_size=5, name='cnv3')
         c3 = F.max_pooling(c3, (2, 2), (2, 2))
 
-        # Convolution : 64,8,8 -> 64,8,8 -> 64,4,4
-        c4 = convblock(c2, 16, f_size=3, name='cnv4')
-        c4 = F.max_pooling(c3, (2, 2), (2, 2))
+        # Convolution : 16,8,8 -> 16,8,8 -> 16,4,4
+        c4 = convblock(c3, 16, f_size=3, name='cnv4')
+        c4 = F.max_pooling(c4, (2, 2), (2, 2))
 
-        c3 = F.leaky_relu(PF.affine(c3, (128,), name='Affine1'), 0.01)
-        c4 = PF.affine(c3, (1,), name='Affine2')
+        # Affine Layer : 16,4,4 (256) -> 128,
+        c4 = F.leaky_relu(PF.affine(c4, (128,), name='Affine1'), 0.01)
+
+        # Affine Layer : 128 -> 1
+        c4 = PF.affine(c4, (1,), name='Affine2')
 
     return c4
 
