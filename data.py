@@ -107,40 +107,29 @@ class create_batch:
     def __init__(self, image, mos, batches, test=False):
 
         # Data Shaping
-        self.image  = image
-        self.mos    = mos
+        self.image  = image.copy()
+        self.mos    = mos.copy()
 
-        # Index
+        # Random index ( for data scrambling)
         ind = np.array(range(image.shape[0]-1))
-	
+        if not test:
+            rd.shuffle(ind)
+
         # Parameters
+        self.i = 0
         self.batch = batches
-        self.iter = math.ceil(image.shape[0]/batches)                # Batch num for each 1 Epoch
-        self.rnd = np.r_[ind,ind] 				     # Reuse beggining of data when not enough data
+        self.iter_n = math.ceil(image.shape[0] / batches)               # Batch num for each 1 Epoch
+        self.rnd = np.r_[ind, np.random.choice(self.iter_n*batches-len(ind))] # Reuse beggining of data when not enough data
 
     def shuffle(self):
-	rd.shuffle(self.rnd)
-	
+        self.i = 0
+        rd.shuffle(self.rnd)
+
+    def __iter__(self):
+        return self
+
     ## 	Pop batch data
-    def next(self, i):
-        index = self.rnd[ i * self.batch : (i + 1) * self.batch ]   # Index of extracting data
+    def __next__(self):
+        index = self.rnd[ self.i * self.batch : (self.i + 1) * self.batch ]   # Index of extracting data
+        self.i += 1
         return self.image[index], self.mos[index]                   # Image & MOS
-
-
-class create_batch_test:
-    """
-    Creating Batch Data for test
-    """
-
-    ## 	Initialization
-    def __init__(self, image, mos, start_frame=None, stop_frame=None):
-
-        # Processing range
-        if start_frame is None:             # Start frame position
-            start_frame  = 0
-        if stop_frame is None:              # Stop frame position
-            stop_frame   = image.shape[0]
-
-        # Parameters
-        self.image  = np.array(image[start_frame:stop_frame])
-        self.mos    = np.array(mos[start_frame:stop_frame])
