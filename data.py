@@ -110,16 +110,17 @@ class create_batch:
         self.image  = image
         self.mos    = mos
 
-        # Random index ( for data scrambling)
+        # Index
         ind = np.array(range(image.shape[0]-1))
-        if not test:
-            rd.shuffle(ind)
-
+	
         # Parameters
         self.batch = batches
         self.iter = math.ceil(image.shape[0]/batches)                # Batch num for each 1 Epoch
-        self.rnd = np.r_[ind,ind[:self.iter*batches-image.shape[0]+1]] # Reuse beggining of data when not enough data
+        self.rnd = np.r_[ind,ind] 				     # Reuse beggining of data when not enough data
 
+    def shuffle(self):
+	rd.shuffle(self.rnd)
+	
     ## 	Pop batch data
     def next(self, i):
         index = self.rnd[ i * self.batch : (i + 1) * self.batch ]   # Index of extracting data
